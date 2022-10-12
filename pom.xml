@@ -15,7 +15,7 @@
 
 	<groupId>net.sf.cssbox</groupId>
 	<artifactId>pdf2dom-light</artifactId>
-	<version>2.0.2</version>
+	<version>2.0.3-SNAPSHOT</version>
 	<name>pdf2dom-light</name>
 	<description>A lightweight fork of Pdf2Dom</description>
 	<url>https://github.com/radkovo/pdf2dom-light</url>
@@ -41,7 +41,7 @@
 		<url>https://github.com/radkovo/pdf2dom-light</url>
 		<connection>scm:git:git@github.com:radkovo/pdf2dom-light.git</connection>
 		<developerConnection>scm:git:git@github.com:radkovo/pdf2dom-light.git</developerConnection>
-		<tag>pdf2dom-light-2.0.2</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<properties>
