@@ -29,7 +29,6 @@ import java.util.List;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.fit.pdfdom.resource.HtmlResourceHandler;
 import org.fit.pdfdom.resource.IgnoreResourceHandler;
-import org.fit.pdfdom.resource.SaveResourceToDirHandler;
 
 /**
  * @author burgetr
@@ -44,11 +43,7 @@ public class PDFToHTML
         {
             System.out.println("Usage: PDFToHTML <infile> [<outfile>] [<options>]");
             System.out.println("Options: ");
-            System.out.println("-fm=[mode] Font handler mode. [mode] = EMBED_BASE64, SAVE_TO_DIR, IGNORE");
-            System.out.println("-fdir=[path] Directory to extract fonts to. [path] = font extract directory ie dir/my-font-dir");
-            System.out.println();
-            System.out.println("-im=[mode] Image handler mode. [mode] = EMBED_BASE64, SAVE_TO_DIR, IGNORE");
-            System.out.println("-idir=[path] Directory to extract images to. [path] = image extract directory ie dir/my-image-dir");
+            System.out.println("-im=[mode] Image handler mode. [mode] = EMBED_BASE64, IGNORE");
 
             System.exit(1);
         }
@@ -104,19 +99,11 @@ public class PDFToHTML
         List<CommandLineFlag> flags = parseFlags(args);
         for (CommandLineFlag flagOn : flags)
         {
-            if (flagOn.flagName.equals("fm"))
-            {
-                HtmlResourceHandler handler = createResourceHandlerFor(flagOn.value);
-                config.setFontHandler(handler);
-            } else if (flagOn.flagName.equals("fdir"))
-                config.setFontHandler(new SaveResourceToDirHandler(new File(flagOn.value)));
-
-            else if (flagOn.flagName.equals("im"))
+            if (flagOn.flagName.equals("im"))
             {
                 HtmlResourceHandler handler = createResourceHandlerFor(flagOn.value);
                 config.setImageHandler(handler);
-            } else if (flagOn.flagName.equals("idir"))
-                config.setImageHandler(new SaveResourceToDirHandler(new File(flagOn.value)));
+            }
         }
 
         return config;
@@ -127,8 +114,6 @@ public class PDFToHTML
         HtmlResourceHandler handler = PDFDomTreeConfig.embedAsBase64();
         if (value.equalsIgnoreCase("EMBED_BASE64"))
             handler = PDFDomTreeConfig.embedAsBase64();
-        else if (value.equalsIgnoreCase("SAVE_TO_DIR"))
-            handler = new SaveResourceToDirHandler();
         else if (value.equalsIgnoreCase("IGNORE"))
             handler = new IgnoreResourceHandler();
 

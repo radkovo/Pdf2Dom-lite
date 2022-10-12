@@ -20,9 +20,6 @@ package org.fit.pdfdom;
 import org.fit.pdfdom.resource.EmbedAsBase64Handler;
 import org.fit.pdfdom.resource.HtmlResourceHandler;
 import org.fit.pdfdom.resource.IgnoreResourceHandler;
-import org.fit.pdfdom.resource.SaveResourceToDirHandler;
-
-import java.io.File;
 
 public class PDFDomTreeConfig
 {
@@ -39,10 +36,6 @@ public class PDFDomTreeConfig
 
     public static HtmlResourceHandler embedAsBase64() {
         return new EmbedAsBase64Handler();
-    }
-
-    public static HtmlResourceHandler saveToDirectory(File directory) {
-        return new SaveResourceToDirHandler(directory);
     }
 
     public static HtmlResourceHandler ignoreResource() {
