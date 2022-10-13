@@ -27,6 +27,10 @@ public class FontTable
 
     private List<Entry> entries = new ArrayList<Entry>();
 
+    public FontTable()
+    {
+    }
+    
     public void addEntry(PDFont font)
     {
         FontTable.Entry entry = get(font);
@@ -139,16 +143,7 @@ public class FontTable
         }
 
         public boolean isEntryValid() {
-            byte[] fontData = new byte[0];
-            try
-            {
-                fontData = getData();
-            } catch (IOException e)
-            {
-                log.warn("Error loading font '{}' Message: {} {}", fontName, e.getMessage(), e.getClass());
-            }
-
-            return fontData != null && fontData.length != 0;
+            return true; //in pdf2dom-lite we don't decode and validate the fonts
         }
 
         public boolean equalToPDFont(PDFont compare) {
