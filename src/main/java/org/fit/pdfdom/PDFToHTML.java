@@ -61,6 +61,7 @@ public class PDFToHTML
         }
 
         PDFDomTreeConfig config = parseOptions(args);
+        config.setFontHandler(new IgnoreResourceHandler());
 
         PDDocument document = null;
         try
